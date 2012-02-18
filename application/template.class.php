@@ -13,12 +13,18 @@ class Template {
 		$this->page = new Dynamic();
 		$this->page->title = "Taskapp";
 		$this->page->template = 'content';
-		$this->page->style = 'view/main.css';
+		$this->page->styles = array(
+			'resources/main.css',
+			'jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css');
+		$this->page->javascripts = array(
+			'jquery/js/jquery-1.7.1.min.js',
+			'jquery/js/jquery-ui-1.8.17.custom.min.js',
+			'resources/main.js' );
 	}
 	/**
 	 *
 	 * In order to show anything to client
-	 * each controller MUST call this method.
+	 * this method MUST be called.
 	 *
 	 * Optional Model object parameter will be rendered.
 	 *
