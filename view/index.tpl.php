@@ -3,7 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><?php echo $this->page->title ?></title>
-<link rel="stylesheet" type="text/css" href="<?php echo $this->page->style; ?>" />
+<?php
+
+foreach($this->page->javascripts as $javascript)
+	Element::IncludeJavascript($javascript);
+
+foreach($this->page->styles as $style)
+	Element::IncludeStyle($style);
+
+	?>
 </head>
 <body>
 

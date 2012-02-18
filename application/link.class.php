@@ -5,13 +5,17 @@ class Link {
 	public static $controller_var = 'c';
 	public static $action_var = 'a';
 
+	public static function ShowURL($controller, $action) {
+		echo Link::MakeURL($controller, $action);
+	}
+
 	public static function ShowAnchor($title, $controller, $action, $attributes = array()) {
 		echo Link::MakeAnchor($title, $controller, $action, $attributes);
 	}
 
 	public static function MakeURL($controller, $action) {
 		if(empty($controller) || empty($action))
-			return "";
+			return Link::getCurrentUrl();
 		$page = Link::getCurrentURL();
 		$params = Link::$controller_var . '=' . $controller . '&' . Link::$action_var . '=' . $action;
 		return $page . '?' . $params;
@@ -21,7 +25,7 @@ class Link {
 		$attr = "";
 		if(!empty($attributes))
 			foreach($attributes as $key => $value)
-				$attr += $key . '="' . $value . '"';
+				$attr .= $key . '="' . $value . '" ';
 		$href = '"' . Link::MakeURL($controller, $action) . '"';
 		return "<a href=$href $attr>$title</a>";
 	}
