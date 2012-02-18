@@ -5,6 +5,7 @@ $success = define('__SITE_PATH', $site_path);
 if(!$success) {
 	throw new Exception("Cannot define __SITE_PATH constant!");
 }
+include __SITE_PATH . '/application/' . 'functions.php';
 /**
  *
  * In-built PHP function serves as a last hope for a class to be loaded.
@@ -13,6 +14,8 @@ if(!$success) {
  * @throws Exception
  */
 function __autoload($class_name) {
+	$class_name = preg_replace_callback("([A-Z])", 'lower', $class_name);
+	$class_name = substr($class_name, 1);
 	$file_path = __SITE_PATH . "/model/$class_name.class.php";
 	if(file_exists($file_path))
 		include $file_path;
@@ -27,6 +30,7 @@ include __SITE_PATH . '/application/' . 'template.class.php';
 include __SITE_PATH . '/application/' . 'link.class.php';
 include __SITE_PATH . '/application/' . 'dynamic.class.php';
 include __SITE_PATH . '/application/' . 'db.class.php';
+include __SITE_PATH . '/application/' . 'element.class.php';
 /**
  * Model and Controller base classes
  */
