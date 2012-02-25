@@ -9,15 +9,9 @@ class IndexController extends Controller {
 
 	public function newtask() {
 		$data = $_POST;
-		//
 		$task = new TaskModel();
-		$task->title = $data['title'];
-		$task->description = $data['description'];
-		//
-		$task->insertNewTask();
-		//
+		$task->insertNewTask($data);
 		$table = $this->fetchGlobalTasksTable();
-		//
 		$this->view->show($table);
 	}
 
@@ -29,12 +23,7 @@ class IndexController extends Controller {
 		$stmt = $db->query("SELECT * FROM tasks");
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$task = new TaskModel();
-			$task->id = $row['ID'];
-			$task->title = $row['title'];
-			$task->description = $row['description'];
-			$task->start = $row['start'];
-			$task->end = $row['end'];
-			$task->is_done = $row['is_done'];
+			$task->setAttributes($row);
 			$table->addTask($task);
 		}
 		return $table;

@@ -15,7 +15,7 @@ class Template {
 		$this->page->template = 'content';
 		$this->page->styles = array(
 			'resources/main.css',
-			'jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css');
+			'jquery/css/custom-theme/jquery-ui-1.8.17.custom.css');
 		$this->page->javascripts = array(
 			'jquery/js/jquery-1.7.1.min.js',
 			'jquery/js/jquery-ui-1.8.17.custom.min.js',

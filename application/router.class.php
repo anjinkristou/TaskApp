@@ -20,6 +20,11 @@ class Router {
 	}
 
 	private function initController() {
+		// Include Ajax controller base class
+		if(isset($_GET['m']))
+			if($_GET['m'] == 'ajax')
+				include __SITE_PATH . '/controller/ajax_controller.class.php';
+		//
 		if(isset($_GET[Link::$controller_var]))
 			$controller = $_GET[Link::$controller_var];
 		else
@@ -39,7 +44,12 @@ class Router {
 			$action = 'index';
 
 		// Set controller class and method names
-		$this->controller = ucfirst($controller) . "Controller";
+		$parts = explode('_', $controller);
+		$class_name = "";
+		foreach($parts as $p) {
+			$class_name .= ucfirst($p);
+		}
+		$this->controller = $class_name . "Controller";
 		$this->action = $action;
 	}
 }

@@ -1,12 +1,195 @@
 @CHARSET "UTF-8";
 
+body {
+background: -moz-linear-gradient(top, rgba(127,111,94,0.65) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(127,111,94,0.65)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(127,111,94,0.65) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(127,111,94,0.65) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(127,111,94,0.65) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+background: linear-gradient(top, rgba(127,111,94,0.65) 0%,rgba(255,255,255,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a67f6f5e', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+background-repeat: no-repeat;
+}
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;	
+}
+
+.header {
+	padding: 10px 10px 0px 10px;	
+}
+
+.header > a {
+	display: inline-block;
+	width: 100px;
+	padding: 10px;
+	background-color: #7F6F5E;
+	color: #FFBA70;
+	text-decoration: none;
+	text-align: center;	
+	font: bold 1.1em verdana,arial,sans-serif;
+}
+
 #center {
 	margin-left: auto;
 	margin-right: auto;
-	width: 1020px;
-	background-color: yellow;
+	width: 920px;
+	height: 100%;
 }
 
-.task_item {
-	margin: 20px;
+#task_table {}
+
+#new_task_button {
+	display: block;
+	margin: 30px;
+	padding: 10px;
+	width: 110px;
+	margin-right: auto;
+	margin-left: auto;
+	background-repeat: no-repeat;
+	text-indent: 25px;
+	text-align: center;
+	border: solid black 1px;
+	font: bold 1.0em verdana,arial,sans-serif;
 }
+.icon-newtask { background-image: url(images/sq_plus.png); background-position: 2px 4px;}
+
+#new_task {
+	overflow: hidden;
+	width: 500px;
+	margin-left: 150px;
+	margin-right: auto;	
+	font: 1.0em verdana, arial, sans-serif;
+}
+
+#new_task form > label {
+	clear: both;
+	width: 28%;
+	float: left;
+	text-align: right;
+	margin: 0px 0px 15px 0px;
+}
+
+#new_task form > textarea, #new_task form > input, #new_task form > .estimate_time {
+	clear: right;
+	width: 68%;
+	float: right;
+	margin: 0px 0px 15px 0px;
+}
+
+#new_task button[type="submit"] {
+	clear: both;
+	display: block;
+	margin: 0px auto 10px auto;
+	width: 100px;
+	border: solid black 1px;
+	background: transparent;
+	font-size: 1.0em;
+}
+
+.task_item { padding-top: 5px; padding-bottom: 5px; margin-bottom: 5px; }
+
+/*
+ * Task header
+ */
+.task_header { overflow: hidden; }
+
+.task_is_done {	float: left; clear: both; }
+.icon-checked { background-image: url(images/checkbox_checked.png); }
+.icon-unchecked { background-image: url(images/checkbox_unchecked.png); }
+.icon-checked, .icon-unchecked { width: 32px; height: 32px; margin: 9px;}
+.icon-pencil { background-image: url(images/pencil.png); }
+div.icon-pencil { width: 16px; height: 16px; display: inline-block; }
+
+.task_title { float: left; }
+
+.task_counter { float: right; margin-right: 150px; }
+.task_counter_clock { display: inline-block; font-size: 18pt; margin: 8px; }
+/* start/stop icons */
+.icon-play { background-image: url(images/playback_play.png); }
+.icon-pause { background-image: url(images/playback_pause.png); }
+.icon-play, .icon-pause { width: 48px; height: 48px; }
+a.icon-play, a.icon-pause { display: inline-block; border: 0px; vertical-align: bottom;}
+
+.task_delete { float: right; margin: 7px; }
+
+.icon-delete { background-image: url(images/delete.png); }
+div.icon-delete { width: 32px; height: 32px; }
+
+.task_detail { overflow: hidden; margin-left: 20px;	margin-right: 20px; }
+
+/*
+ * Editable fields
+ */
+.editable {
+	padding: 15px;
+}
+
+.editable > label { font-size: 0.8em; }
+
+.datetime > label, .estimate > label {
+	display: block;
+	clear: left;
+	float: left;
+	width: 24%;
+	text-align: right;
+	padding-right: 15px;
+}
+
+.datetime > .editable_data, .datetime > input, .estimate_time {
+	display: inline-block;
+	float: left;
+	width: 70%;
+}
+
+.description > label {
+	display: block;
+	text-indent: 30px;
+	border-bottom: solid black 1px;
+	margin-bottom: 5px;
+	padding-bottom: 3px;
+}
+
+.description > .editable_data, .description > textarea {
+	width: 100%;
+	height: 100px;
+	font-size: 0.8em;
+}
+
+.estimate_time {
+	padding: 0px;
+}
+
+.estimate_time > label {
+	font-size: 0.7em;
+}
+
+.estimate_time > input {
+}
+
+/*
+ * Task distinguish
+ */
+.task_even { background-color: #FFDFBD; }
+
+.task_odd { background-color: #CCB297; }
+
+#notasks {
+	font-size: 1.5em;
+	text-align: center;
+}
+
+/*
+ * Set bold text to task data areas
+ */
+.datetime .editable_data, .estimate .editable_data {
+	font-weight: bold;
+}
+
+/*
+ * Pointer for all editable fields
+ */
+.editable_data, .task_title .icon-pencil { cursor: pointer; }
