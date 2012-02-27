@@ -18,11 +18,11 @@
 		<div class="edit icon-pencil" style="display: inline-block"></div>
 	</div>
 
-	<div class="task_delete icon-delete"></div>
+	<div class="task_delete icon-delete" title="Delete task"></div>
 
 	<div class="task_counter">
 		<input type="hidden" name="duration" value="<?php echo $this->duration; ?>" />
-		<a href="#"></a>
+		<a href="#" title="Toggle task timer"></a>
 		<div class="task_counter_clock"></div>
 	</div>
 

@@ -131,6 +131,13 @@ function initTasks() {
 	 * 
 	 */
 	$('.task_item').has('input[name="started"][value="true"]').find('.task_counter > a').click();
+	/**
+	 * Help, tooltips
+	 */
+	$('.editable_data')
+		.attr('title', "Click to edit")
+		.nextAll(':input').attr('title', "ctrl-enter to save");
+	
 }
 
 function ajaxSubmitTask(context) {
