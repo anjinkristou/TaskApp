@@ -36,7 +36,7 @@ class TaskModel extends Model {
 		$sql = "INSERT INTO tasks (id_user, title, description, estimate) ";
 		$sql .= "VALUES(:id_user, :title, :description, :estimate)";
 		$statement = $db->prepare($sql);
-		$statement->bindParam(':id_user', $_SESSION['ID_USER'], PDO::PARAM_INT);
+		$statement->bindParam(':id_user', Session::$UserID, PDO::PARAM_INT);
 		$statement->bindParam(':title', $data['title']);
 		$statement->bindParam(':description', $data['description']);
 		$estimate = $this->toEstimateType(

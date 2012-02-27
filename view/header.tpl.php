@@ -3,7 +3,7 @@
 	<?php Link::ShowAnchor("Statistics", "", "", array("class" => "ui-corner-top"))?>
 
 	<div id="user_info">
-		<span><?php echo Session::$User; ?></span>
+		<span><?php echo Session::$UserName; ?></span>
 		<?php Link::ShowAnchor("Logout", "login", "logout"); ?>
 	</div>
 

@@ -21,7 +21,7 @@ class IndexController extends Controller {
 		//
 		$db = db::getInstance();
 		$stmt = $db->prepare("SELECT * FROM tasks WHERE id_user=:id_user");
-		$stmt->bindParam(':id_user', $_SESSION['ID_USER'], PDO::PARAM_INT);
+		$stmt->bindParam(':id_user', Session::$UserID, PDO::PARAM_INT);
 		$stmt->execute();
 		while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$task = new TaskModel();
