@@ -9,11 +9,15 @@ class TaskAjaxController extends AjaxController {
 	public function done() {
 		$data = $_POST;
 		$db = DB::getInstance();
-		if($data['is_done'] == '0')
-			$time = "NULL";
+		$stmt = $db->prepare("SELECT UNIX_TIMESTAMP(end) FROM tasks WHERE ID=:id");
+		$stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
+		$stmt->execute();
+		$result = $stmt->fetch();
+		if($data['is_done'] == '1' && $result[0] == 0)
+			$sql = "UPDATE tasks SET is_done=:is_done, end=now() WHERE ID=:id";
 		else
-			$time = "now()";
-		$stmt = $db->prepare("UPDATE tasks SET is_done=:is_done, end=$time WHERE ID=:id");
+			$sql = "UPDATE tasks SET is_done=:is_done WHERE ID=:id";
+		$stmt = $db->prepare($sql);
 		$stmt->bindParam(':is_done', $data['is_done'], PDO::PARAM_INT);
 		$stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
 		$count = $stmt->execute();
@@ -68,7 +72,7 @@ class TaskAjaxController extends AjaxController {
 	public function stopped() {
 		$data = $_POST;
 		$db = DB::getInstance();
-		$stmt = $db->prepare("UPDATE tasks SET duration=:duration WHERE ID=:id");
+		$stmt = $db->prepare("UPDATE tasks SET duration=:duration, started=NULL WHERE ID=:id");
 		$stmt->bindParam(':duration', $data['duration'], PDO::PARAM_INT);
 		$stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
 		$count = $stmt->execute();

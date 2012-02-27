@@ -1,6 +1,10 @@
 <div class="task_item ui-widget ui-corner-all">
 <form action="<?php Link::ShowURL("index", "update")?>">
-<input type="hidden" name="id" value="<?php echo $this->id; ?>">
+<input type="hidden" name="id" value="<?php echo $this->id; ?>" />
+<?php
+	if($this->started != '0000-00-00 00:00:00')
+		echo '<input type="hidden" name="started" value="true" />';
+?>
 
 <div class="task_header">
 

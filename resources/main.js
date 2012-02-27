@@ -127,6 +127,10 @@ function initTasks() {
 				
 		}
 	});
+	/**
+	 * 
+	 */
+	$('.task_item').has('input[name="started"][value="true"]').find('.task_counter > a').click();
 }
 
 function ajaxSubmitTask(context) {
@@ -162,8 +166,12 @@ function ajaxSubmitTaskHandler(xml) {
 }
 
 function distinguishTasks() {
-	$('.task_item:odd').addClass('task_odd');
-	$('.task_item:even').addClass('task_even');
+	$('.task_item:odd')
+		.removeClass('task_even')
+		.addClass('task_odd');
+	$('.task_item:even')
+		.removeClass('task_odd')
+		.addClass('task_even');
 }
 
 function edit() {

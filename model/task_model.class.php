@@ -24,6 +24,7 @@ class TaskModel extends Model {
 		$this->start = $attr['start'];
 		$this->end = $attr['end'];
 		$this->duration = $attr['duration'];
+		$this->started = $attr['started'];
 		$this->is_done = $attr['is_done'];
 		$estimate_arr = $this->fromEstimateType($attr['estimate']);
 		$this->estimate_days = $estimate_arr['days'];
