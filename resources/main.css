@@ -15,26 +15,7 @@ background-repeat: no-repeat;
 html, body {
 	margin: 0px;
 	padding: 0px;
-	height: 100%;	
-}
-
-.header {
-	padding: 10px 10px 0px 10px;	
-}
-
-.header > a {
-	display: inline-block;
-	width: 100px;
-	padding: 10px;
-	background-color: #7F6F5E;
-	color: #FFBA70;
-	text-decoration: none;
-	text-align: center;	
-	font: bold 1.1em verdana,arial,sans-serif;
-}
-
-.header > #user_info {
-	float: right;
+	height: 100%;
 }
 
 #center {
