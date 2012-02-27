@@ -17,6 +17,9 @@ function initTasks() {
 			$("a", this).toggle(startButton, pauseButton);
 		else {
 			$(this).css('color', '#CECECE');
+			$("a", this).click(function(event) {
+				event.preventDefault();
+			});
 		}
 		// create timer
 		var timer = new StopWatch(function(clock) {
@@ -51,7 +54,8 @@ function initTasks() {
 							else
 								$(this).addClass('icon-unchecked');
 						})
-						.click(ajaxTaskDone);
+						.click(ajaxTaskDone)
+						.click(pauseButton);
 	/**
 	 * Title click actions - toggling DETAIL logic
 	 */
@@ -67,11 +71,19 @@ function initTasks() {
 		$(this).hide();
 	});
 	$(".task_detail").hide();
-	$('.task_title .editable_data').toggle(function() {
-												$(this).parentsUntil('.task_item').nextAll('.task_detail').show('fast');
-											}, function() {
-												$(this).parentsUntil('.task_item').nextAll(".task_detail").hide('fast');
-											});
+	$('.task_title .editable_data').toggle(
+			function() {
+				$(this).parentsUntil('.task_item').nextAll('.task_detail')
+						.show('fast');
+				$(this).removeClass('icon-down');
+				$(this).addClass('icon-up');
+			},
+			function() {
+				$(this).parentsUntil('.task_item').nextAll(".task_detail")
+						.hide('fast');
+				$(this).removeClass('icon-up');
+				$(this).addClass('icon-down');
+			});
 	/**
 	 * Delete handler
 	 */
@@ -98,6 +110,23 @@ function initTasks() {
 	});
 	
 	distinguishTasks();
+	/**
+	 * Create date picker on datetime inputs
+	 */
+	$('.task_item .editable.datetime > input').datepicker({ dateFormat: 'yy-mm-dd 00:00:00' });
+	/**
+	 * 
+	 */
+	$('.estimate_time').each(function() {
+		var arr = $('.editable_data', this).text();
+		if(arr == '000') {
+			$(this)
+				.after('<span class="no_estimate" style="font-weight:bold">none set</span>')
+				.hide()
+				.next().click(function() { $(this).hide(); $(this).prev().show(); });
+				
+		}
+	});
 }
 
 function ajaxSubmitTask(context) {
@@ -185,7 +214,10 @@ function ajaxTaskDoneHandler(xml) {
 	if(is_done == 1) {
 		elem.removeClass('icon-unchecked');
 		elem.addClass('icon-checked');
-		$('.task_counter > a', form).unbind('click');
+		$('.task_counter > a', form).off('click');
+		$('.task_counter > a', form).click(function(event) {
+			event.preventDefault();
+		});
 		$('.task_counter', form).css('color', '#CECECE');
 	} else {
 		elem.removeClass('icon-checked');
@@ -220,20 +252,24 @@ function ajaxTaskStartedHandler(xml) {
 }
 
 function pauseButton() {
-	var counter = $(this).parents(".task_counter");
+	var parent = $(this).parents('.task_item');
+	var counter = $(parent).find('.task_counter');
 	var timer = counter.data('timer');
-	timer.stop();
+	if(timer.isRunning)
+		timer.stop();
+	else
+		return;
 	
 	// set visible div clock value and input hidden field
 	$('.task_counter_clock', counter).text(timer.getFormattedDuration());
 	$('input[name="duration"]', counter).val(timer.timespan.getDuration());
 	
-	// change button style to 
-	$(this).removeClass('icon-pause');
-	$(this).addClass('icon-play');
+	// change button icon
+	$('a', counter).removeClass('icon-pause');
+	$('a', counter).addClass('icon-play');
 	
 	// send ajax request for the server to store elapsed time
-	var id = $(this).parents('form').children('input[name="id"]').val();
+	var id = $(parent).find('input[name="id"]').val();
 	$.post('index.php?m=ajax&c=task_ajax&a=stopped',
 			{'id': id, 'duration': timer.timespan.getDuration()},
 			ajaxTaskStoppedHandler);
@@ -308,6 +344,8 @@ function Timer(callback, miliseconds, context) {
 
 function StopWatch(callback, context) {
 	
+	this.isRunning = false;
+	
 	this.initTo = function(value) {
 		this.timespan.addSeconds(value);
 	};
@@ -315,6 +353,7 @@ function StopWatch(callback, context) {
 	this.start = function() {
 		this.timespan.start();
 		this.timer.start();
+		this.isRunning = true;
 	};
 	
 	this.tick = function(object) {
@@ -324,6 +363,7 @@ function StopWatch(callback, context) {
 	this.stop = function() {
 		this.timespan.stop();
 		this.timer.stop();
+		this.isRunning = false;
 	};
 	
 	this.timespan = new TimeSpan();

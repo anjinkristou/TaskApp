@@ -1,9 +1,5 @@
 <style>
 
-body {
-	font-family: verdana, arial, sans-serif;
-}
-
 #registration {
 	width: 100%; text-align: center; margin: 50px 50px 30px 50px;
 	font-size: 1.8em;

@@ -9,9 +9,9 @@
 	</div>
 
 	<div class="task_title editable ui-corner-all">
-		<div class="editable_data" style="display: inline-block"><?php echo $this->title; ?></div>
+		<div class="editable_data icon-down" style="display: inline-block"><?php echo $this->title; ?></div>
 		<input type="text" name="title" />
-		<div class="icon-pencil" style="display: inline-block"></div>
+		<div class="edit icon-pencil" style="display: inline-block"></div>
 	</div>
 
 	<div class="task_delete icon-delete"></div>

@@ -2,7 +2,6 @@
 <!--
 .header {
 	padding: 10px 10px 0px 10px;
-	font-family: verdana,arial,sans-serif;
 	overflow: hidden;
 }
 
@@ -18,7 +17,7 @@
 
 .header > #user-info > a {
 	display: inline-block;
-	width: 100px; padding: 5px; vertical-align: bottom;
+	width: 100px; padding: 5px;
 	background-color: #7F6F5E;
 	color: #FFBA70;
 	text-decoration: none; text-align: center;
@@ -31,7 +30,7 @@
 
 	<div id="user-info">
 		<span id="username"><?php echo Session::$UserName; ?></span>
-		<?php Link::ShowAnchor("Logout", "login", "logout", array("class"=>"ui-corner-top")); ?>
+		<?php Link::ShowAnchor("Logout", "login", "logout", array("class"=>"ui-corner-all")); ?>
 	</div>
 
 </div>

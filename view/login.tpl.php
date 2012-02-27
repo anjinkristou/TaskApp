@@ -1,7 +1,8 @@
 <style>
 <!--
 #taskapp_logo {
-	font: italic 2.8em verdana, arial, sand-serif;
+	font-style: italic;
+	font-size: 2.8em;
 	text-align: center;
 	margin: 20px;
 	paddin: 10px;
@@ -28,7 +29,6 @@
 	padding: 7px;
 	margin: 3px;
 	text-align: right;
-	font: 1.0em verdana, arial, sans-serif;
 }
 
 #login input {
@@ -37,7 +37,7 @@
 	padding: 5px;
 	margin: 3px;
 	text-align: left;
-	font: 1.1em verdana, arial, sans-serif;
+	font-size: 1.1em;
 }
 
 #login button, #login a {

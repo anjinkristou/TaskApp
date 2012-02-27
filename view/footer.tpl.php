@@ -10,7 +10,6 @@
 }
 
 #footer > span {
-	font-family: verdana, arial, sans-serif;
 	font-size: 0.6em;
 	font-variant: small-caps;
 }

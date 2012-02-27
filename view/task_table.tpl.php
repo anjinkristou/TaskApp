@@ -17,16 +17,6 @@ $(function() {
 //-->
 </script>
 
-<div id="task_table">
-<?php
-if(!empty($this->rows))
-	foreach($this->rows as $task) {
-		$task->displayTemplate();
-	}
-else
-	echo '<div id="notasks">No tasks to be shown.</div>';
-?>
-
 <div id="new_task_button" class="icon-newtask ui-corner-all">New</div>
 
 <div id="new_task">
@@ -53,5 +43,15 @@ else
 		<button type="submit" class="ui-corner-all">Create</button>
 	</form>
 </div>
+
+<div id="task_table">
+<?php
+if(!empty($this->rows))
+	foreach($this->rows as $task) {
+		$task->displayTemplate();
+	}
+else
+	echo '<div id="notasks">No tasks to be shown.</div>';
+?>
 
 </div>
