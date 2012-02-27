@@ -16,11 +16,11 @@ foreach($this->page->styles as $style)
 <body>
 
 <div id="center">
-	<div id="header"><?php include 'header.tpl.php'; ?></div>
+	<div id="header"><?php include $this->getFileTemplate($this->page->header); ?></div>
 	<div id="content">
-	<?php $this->has_model ? $this->model->displayTemplate() : include $this->getFileTemplate($this->page->template); ?>
+	<?php $this->has_model ? $this->model->displayTemplate() : include $this->getFileTemplate($this->page->content); ?>
 	</div>
-	<div id="footer"><?php include 'footer.tpl.php'; ?></div>
+	<div id="footer"><?php include $this->getFileTemplate($this->page->footer); ?></div>
 </div>
 
 </body>

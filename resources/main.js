@@ -122,6 +122,7 @@ function serializeFormData(form) {
 }
 
 function ajaxSubmitTaskHandler(xml) {
+	alert(xml);
 	var id = $("id", xml).text();
 	var task_item = $('.task_item').has('input[name="id"][value="' + id + '"]');
 	$(xml).children().each(function() {

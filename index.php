@@ -25,6 +25,7 @@ function __autoload($class_name) {
 /**
  * Required application classes
  */
+include __SITE_PATH . '/application/' . 'session.class.php';
 include __SITE_PATH . '/application/' . 'router.class.php';
 include __SITE_PATH . '/application/' . 'template.class.php';
 include __SITE_PATH . '/application/' . 'link.class.php';
@@ -36,6 +37,10 @@ include __SITE_PATH . '/application/' . 'element.class.php';
  */
 include __SITE_PATH . '/controller/' . 'controller.class.php';
 include __SITE_PATH . '/model/' . 'model.class.php';
+/**
+ * Session management
+ */
+Session::Start();
 /**
  *
  * Router object processes request URI

@@ -18,6 +18,16 @@ abstract class Controller {
 
 	/**
 	 *
+	 * This method is used by the Router.
+	 * The Router finds out whether the controller needs to be authenticated or not.
+	 * Authentication is needed by default.
+	 */
+	public function authNeeded() {
+		return true;
+	}
+
+	/**
+	 *
 	 * Every controller MUST have index action method
 	 */
 	abstract public function index();

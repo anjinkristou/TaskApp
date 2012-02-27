@@ -19,8 +19,8 @@ class TaskModel extends Model {
 
 	public function setAttributes($attr) {
 		$this->id = $attr['ID'];
-		$this->title = $attr['title'];
-		$this->description = nl2br($attr['description']);
+		$this->title = htmlentities($attr['title']);
+		$this->description = nl2br(htmlentities($attr['description']));
 		$this->start = $attr['start'];
 		$this->end = $attr['end'];
 		$this->duration = $attr['duration'];
@@ -33,9 +33,10 @@ class TaskModel extends Model {
 
 	public function insertNewTask($data) {
 		$db = DB::getInstance();
-		$sql = "INSERT INTO tasks (title, description, estimate) ";
-		$sql .= "VALUES(:title, :description, :estimate)";
+		$sql = "INSERT INTO tasks (id_user, title, description, estimate) ";
+		$sql .= "VALUES(:id_user, :title, :description, :estimate)";
 		$statement = $db->prepare($sql);
+		$statement->bindParam(':id_user', $_SESSION['ID_USER'], PDO::PARAM_INT);
 		$statement->bindParam(':title', $data['title']);
 		$statement->bindParam(':description', $data['description']);
 		$estimate = $this->toEstimateType(

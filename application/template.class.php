@@ -12,7 +12,9 @@ class Template {
 		$this->top_level_template = 'index';
 		$this->page = new Dynamic();
 		$this->page->title = "Taskapp";
-		$this->page->template = 'content';
+		$this->page->header = 'header';
+		$this->page->content = 'content';
+		$this->page->footer = 'footer';
 		$this->page->styles = array(
 			'resources/main.css',
 			'jquery/css/custom-theme/jquery-ui-1.8.17.custom.css');
@@ -40,6 +42,17 @@ class Template {
 		include $this->getFileTemplate($this->top_level_template);
 	}
 
+	public function setHeaderTemplate($template) {
+		$this->page->header = $template;
+	}
+	public function setContentTemplate($template) {
+		$this->page->content = $template;
+	}
+	public function setFooterTemplate($template) {
+		$this->page->footer = $template;
+	}
+
+	// TODO: REMOVE if not used
 	public function setContent($content) {
 		$this->content = $content->data;
 	}
@@ -49,5 +62,18 @@ class Template {
 		if(!file_exists($file_path))
 			throw new Exception("Unrecognized view template!");
 		return $file_path;
+	}
+
+	public function showOnlyContent($template) {
+		$this->page->header = "empty";
+		$this->page->content = $template;
+		$this->show();
+	}
+
+	public function showErrorMessage($message) {
+		$this->page->header = "empty";
+		$this->page->content = "error";
+		$this->page->error = $message;
+		$this->show();
 	}
 }
