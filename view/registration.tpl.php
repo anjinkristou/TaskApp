@@ -64,11 +64,11 @@ $(function() {
         var email = $('input[name="email"]').val();
         if(email == '') {
             has_error = true;
-            $(this).nextAll('.error').hide();
+            $(this).nextAll('.error').remove();
             $(this).after('<span class="error">Please enter your email address.</span>');
         } else if(!email_reg.test(email)) {
         	has_error = true;
-        	$(this).nextAll('.error').hide();
+        	$(this).nextAll('.error').remove();
         	$(this).after('<span class="error">Enter a valid email address.</span>');
         }
 

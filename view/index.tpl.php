@@ -20,8 +20,9 @@ foreach($this->page->styles as $style)
 	<div id="content">
 	<?php $this->has_model ? $this->model->displayTemplate() : include $this->getFileTemplate($this->page->content); ?>
 	</div>
-	<div id="footer"><?php include $this->getFileTemplate($this->page->footer); ?></div>
 </div>
+
+<?php include $this->getFileTemplate($this->page->footer); ?>
 
 </body>
 </html>
