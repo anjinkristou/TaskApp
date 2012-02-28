@@ -11,6 +11,7 @@ class IndexController extends Controller {
 		$data = $_POST;
 		$task = new TaskModel();
 		$task->insertNewTask($data);
+		//header('Location: index.php');
 		$table = $this->fetchGlobalTasksTable();
 		$this->view->show($table);
 	}

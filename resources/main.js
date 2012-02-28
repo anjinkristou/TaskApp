@@ -97,7 +97,7 @@ function initTasks() {
 			buttons: {
 				Yes: function() {
 					$( this ).dialog( "close" );
-					$.post('index?m=ajax&c=task_ajax&a=delete',
+					$.post('index.php?m=ajax&c=task_ajax&a=delete',
 							{'id': id},
 							ajaxDeleteHandler);
 				},
@@ -192,11 +192,12 @@ function edit() {
 }
 
 function ajaxDeleteHandler(xml) {
-	/*var id = $("id", xml).text();
+	var id = $("id", xml).text();
 	var task_item = $('.task_item').has('input[name="id"][value="' + id + '"]');
-	task_item.remove();
-	distinguishTasks();*/
-	location.reload(); // counts on presence of 'index.php' URL
+	$(task_item)
+		.hide('slow', function() { $(this).remove(); distinguishTasks(); });
+	
+	//location.reload(); // counts on presence of 'index.php' URL
 }
 
 function ajaxTaskDone() {
