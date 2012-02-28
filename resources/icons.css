@@ -1,0 +1,86 @@
+@CHARSET "UTF-8";
+
+/*********
+ * Icons *
+ *********/
+
+/* New task */
+.icon-newtask {
+	background-image: url(images/sq_plus.png);
+}
+
+div.icon-newtask {
+	background-position: 2px 3px;
+}
+
+/* Checking task */
+.icon-checked {
+	background-image: url(images/checkbox_checked.png);
+}
+
+.icon-unchecked {
+	background-image: url(images/checkbox_unchecked.png);
+}
+
+.icon-checked, .icon-unchecked {
+	width: 32px;
+	height: 32px;
+	margin: 9px;
+}
+
+/* Display task detail */
+.icon-down {
+	background-image: url(images/br_down.png);	
+}
+
+.icon-up {
+	background-image: url(images/br_up.png);	
+}
+
+
+div.icon-down, div.icon-up {
+	background-repeat: no-repeat;
+	min-height: 16px; min-width: 16px;
+	padding-left: 25px;
+}
+
+/* Editing title */
+.icon-pencil {
+	background-image: url(images/pencil.png);
+}
+
+div.icon-pencil {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+}
+
+/* Counter */
+.icon-play {
+	background-image: url(images/playback_play.png);
+}
+
+.icon-pause {
+	background-image: url(images/playback_pause.png);
+}
+
+.icon-play, .icon-pause {
+	width: 48px;
+	height: 48px;
+}
+
+a.icon-play, a.icon-pause {
+	display: inline-block;
+	border: 0px;
+	vertical-align: bottom;
+}
+
+/* Deleting task */
+.icon-delete {
+	background-image: url(images/delete.png);
+}
+
+div.icon-delete {
+	width: 32px;
+	height: 32px;
+}

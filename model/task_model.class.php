@@ -20,7 +20,7 @@ class TaskModel extends Model {
 	public function setAttributes($attr) {
 		$this->id = $attr['ID'];
 		$this->title = htmlentities($attr['title']);
-		$this->description = nl2br(htmlentities($attr['description']));
+		$this->description = nl2br(htmlentities($attr['description']), false);
 		$this->start = $attr['start'];
 		$this->end = $attr['end'];
 		$this->duration = $attr['duration'];

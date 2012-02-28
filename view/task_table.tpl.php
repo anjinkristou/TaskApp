@@ -6,7 +6,7 @@ $(function() {
 
 	// Bindings
 	$("#new_task_button").toggle(function() {
-		$("#new_task").show('slow')
+		$("#new_task").show('slow');
 		$(this).text("Cancel");
 	}, function() {
 		$("#new_task").hide('fast');
@@ -19,30 +19,32 @@ $(function() {
 
 <div id="new_task_button" class="icon-newtask ui-corner-all">New</div>
 
-<div id="new_task">
-	<form method="post" action="<?php Link::ShowURL("index", "newtask"); ?>">
+<form method="post" action="<?php Link::ShowURL("index", "newtask"); ?>">
+	<div id="new_task">
+
 		<label for="title">Title</label>
-		<input id="title" type="text" name="title" />
-		<br />
+		<input id="title" type="text" name="title">
+		<br>
 		<label for="description">Description</label>
-		<textarea id="description" name="description" rows="5"></textarea>
-		<br />
+		<textarea id="description" name="description" rows="5" cols="40"></textarea>
+		<br>
 		<label>Estimated time</label>
 		<div class="estimate_time">
 
-			<input type="text" size="4" name="estimate_days" />
+			<input type="text" size="4" name="estimate_days">
 			<label>days</label>
 
-			<input type="text" size="2" name="estimate_hours" />
+			<input type="text" size="2" name="estimate_hours">
 			<label>hours</label>
 
-			<input type="text" size="2" name="estimate_minutes" />
+			<input type="text" size="2" name="estimate_minutes">
 			<label>minutes</label>
 
 		</div>
 		<button type="submit" class="ui-corner-all">Create</button>
-	</form>
-</div>
+
+	</div>
+</form>
 
 <div id="task_table">
 <?php

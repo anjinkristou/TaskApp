@@ -25,7 +25,8 @@ class LoginController extends Controller {
 		$result = $stmt->fetch();
 		if(isset($result[0])) {
 			Session::authenticateUser($result[0]);
-			Router::Reroute("index");
+			header("Location: index.php");
+			//Router::Reroute("index");
 		} else
 			$this->view->showErrorMessage("Either username or password are incorrect");
 	}

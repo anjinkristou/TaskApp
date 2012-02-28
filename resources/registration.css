@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+#registration .title {
+	width: 100%; text-align: center; margin: 50px 50px 30px 50px;
+	font-size: 1.8em;
+	font-style: italic;
+}
+
+#registration form {
+	width: 70%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#registration form label {
+	float: left; clear: both; width: 35%;
+	text-align: right;
+	margin: 5px; padding: 5px;
+}
+
+#registration form input {
+	float: left; width: 250px;
+	margin: 5px; padding: 5px;
+}
+
+#registration form button {
+	margin: 10px;
+}
+
+#registration form button[type="reset"] {
+	background: #FF9A8A;
+}
+
+#registration .error {
+	display: block;
+	color: red;
+	margin: 10px;
+}

@@ -1,0 +1,207 @@
+@CHARSET "UTF-8";
+
+.header {
+	padding: 10px 10px 0px 10px;
+	overflow: hidden;
+}
+
+.header > #user-info {
+	float: right;
+}
+
+.header > #user-info #username {
+	display: inline-block;
+	font-variant: small-caps; font-size: 1.2em;
+	margin: 8px;
+}
+
+.header > #user-info > a {
+	display: inline-block;
+	width: 100px; padding: 5px;
+	background-color: #7F6F5E;
+	color: #FFBA70;
+	text-decoration: none; text-align: center;
+	font-size: 1.1em;
+}
+
+#task_table {
+	
+}
+
+#new_task_button {
+	margin: 30px;
+	padding: 10px;
+	width: 110px;
+	margin-right: auto;
+	margin-left: 20px;
+	background-repeat: no-repeat;
+	text-indent: 25px;
+	text-align: center;
+	border: solid black 1px;
+	font-weight: bold;
+}
+
+#new_task {
+	overflow: hidden;
+	width: 500px;
+	margin-left: 150px;
+	margin-right: auto;
+	margin-top: -70px;
+}
+
+#new_task > label {
+	clear: both;
+	width: 28%;
+	float: left;
+	text-align: right;
+	margin: 0px 0px 15px 0px;
+}
+
+#new_task > textarea, #new_task > input, #new_task > .estimate_time
+	{
+	clear: right;
+	width: 68%;
+	float: right;
+	margin: 0px 0px 15px 0px;
+}
+
+#new_task button[type="submit"] {
+	clear: both;
+	display: block;
+	margin: 0px auto 10px auto;
+	width: 100px;
+	border: solid black 1px;
+	background: transparent;
+	font-size: 1.0em;
+}
+
+.task_item {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+/*
+ * Task header
+ */
+.task_header {
+	overflow: hidden;
+}
+
+.task_is_done {
+	float: left;
+	clear: both;
+}
+
+.task_title {
+	float: left;
+}
+
+.task_title input[name="title"] {
+	width: 400px;	
+}
+
+.task_counter {
+	float: right;
+	margin-right: 150px;
+}
+
+.task_counter_clock {
+	display: inline-block;
+	font-size: 18pt;
+	margin: 8px;
+}
+
+.task_delete {
+	float: right;
+	margin: 7px;
+}
+
+.task_detail {
+	overflow: hidden;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+/*
+ * Editable fields
+ */
+.editable {
+	padding: 15px;
+}
+
+.editable > label {
+	font-size: 0.8em;
+}
+
+.datetime > label, .estimate > label {
+	display: block;
+	clear: left;
+	float: left;
+	width: 24%;
+	text-align: right;
+	padding-right: 15px;
+}
+
+.datetime > .editable_data, .datetime > input, .estimate_time {
+	display: inline-block;
+	float: left;
+	width: 70%;
+}
+
+.description>label {
+	display: block;
+	text-indent: 30px;
+	border-bottom: solid black 1px;
+	margin-bottom: 5px;
+	padding-bottom: 3px;
+}
+
+.description > .editable_data, .description > textarea {
+	width: 100%;
+	height: 100px;
+	font-size: 0.8em;
+	overflow: scroll;
+}
+
+.estimate_time {
+	padding: 0px;
+}
+
+.estimate_time > label {
+	font-size: 0.7em;
+}
+
+.estimate_time > input {
+	
+}
+
+/*
+ * Task distinguish
+ */
+.task_even {
+	background-color: #FFDFBD;
+}
+
+.task_odd {
+	background-color: #CCB297;
+}
+
+#notasks {
+	font-size: 1.5em;
+	text-align: center;
+}
+
+/*
+ * Set bold text to task data areas
+ */
+.datetime .editable_data, .estimate .editable_data {
+	font-weight: bold;
+}
+
+/*
+ * Pointer for all editable fields
+ */
+#new_task_button, #new_task button[type="submit"], .editable_data, .task_title .edit, .task_is_done, .task_delete, .estimate_time > label {
+	cursor: pointer;
+}

@@ -6,7 +6,7 @@ class Link {
 	public static $action_var = 'a';
 
 	public static function ShowURL($controller, $action) {
-		echo Link::MakeURL($controller, $action);
+		echo htmlentities(Link::MakeURL($controller, $action));
 	}
 
 	public static function ShowAnchor($title, $controller, $action, $attributes = array()) {
@@ -26,7 +26,7 @@ class Link {
 		if(!empty($attributes))
 			foreach($attributes as $key => $value)
 				$attr .= $key . '="' . $value . '" ';
-		$href = '"' . Link::MakeURL($controller, $action) . '"';
+		$href = '"' . htmlentities(Link::MakeURL($controller, $action)) . '"';
 		return "<a href=$href $attr>$title</a>";
 	}
 

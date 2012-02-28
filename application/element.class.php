@@ -10,7 +10,9 @@ class Element {
 	}
 
 	public static function IncludeJavascript($resource_path) {
-		Element::ShowElement("script", array("type" => "text/javascript", "src" => $resource_path), " ");
+		Element::ShowElement("script", array(
+			"type" => "text/javascript",
+			"src" => $resource_path), " ");
 	}
 
 	public static function ShowElement($node, $attributes, $content = "") {
@@ -25,7 +27,7 @@ class Element {
 		if(!empty($content)) {
 			$result .= ">$content</$node>";
 		} else {
-			$result .= " />";
+			$result .= ">";
 		}
 		return $result;
 	}

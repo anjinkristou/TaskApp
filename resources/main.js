@@ -73,13 +73,13 @@ function initTasks() {
 	$(".task_detail").hide();
 	$('.task_title .editable_data').toggle(
 			function() {
-				$(this).parentsUntil('.task_item').nextAll('.task_detail')
+				$(this).parents('.task_item').find('.task_detail')
 						.show('fast');
 				$(this).removeClass('icon-down');
 				$(this).addClass('icon-up');
 			},
 			function() {
-				$(this).parentsUntil('.task_item').nextAll(".task_detail")
+				$(this).parents('.task_item').find(".task_detail")
 						.hide('fast');
 				$(this).removeClass('icon-up');
 				$(this).addClass('icon-down');
@@ -89,7 +89,7 @@ function initTasks() {
 	 */
 	$('.task_delete').click(function() {
 		var dialog = $('<div></div>').html("Are you sure you want to delete the task?");
-		var id = $(this).parents('.task_item > form').children('input[name="id"]').val();
+		var id = $(this).parents('.task_item').find('input[name="id"]').val();
 		dialog.dialog({
 			resizable: false,
 			height:160,
@@ -193,13 +193,13 @@ function edit() {
 
 function ajaxDeleteHandler(xml) {
 	var id = $("id", xml).text();
-	var form = $('.task_item').has('input[name="id"][value="' + id + '"]');
-	form.remove();
+	var task_item = $('.task_item').has('input[name="id"][value="' + id + '"]');
+	task_item.remove();
 	distinguishTasks();
 }
 
 function ajaxTaskDone() {
-	var id = $(this).parents('form').children('input[name="id"]').val();
+	var id = $(this).parents('.task_item').find('input[name="id"]').val();
 	/** 
 	 * Global var, can be used in ajax callback,
 	 * although it's not very safe.
@@ -221,24 +221,24 @@ function ajaxTaskDone() {
 
 function ajaxTaskDoneHandler(xml) {
 	var id = $("id", xml).text();
-	var form = $('.task_item > form').has('input[name="id"][value="' + id + '"]');
+	var task_item = $('.task_item').has('input[name="id"][value="' + id + '"]');
 	var is_done = $("done", xml).text();
-	$('.task_is_done > input[name="is_done"]', form).val(is_done);
-	$('input[name="end"]', form).prev('.editable_data').html($("end", xml).html());
-	var elem = $('.task_is_done', form);
+	$('.task_is_done > input[name="is_done"]', task_item).val(is_done);
+	$('input[name="end"]', task_item).prev('.editable_data').html($("end", xml).html());
+	var elem = $('.task_is_done', task_item);
 	if(is_done == 1) {
 		elem.removeClass('icon-unchecked');
 		elem.addClass('icon-checked');
-		$('.task_counter > a', form).off('click');
-		$('.task_counter > a', form).click(function(event) {
+		$('.task_counter > a', task_item).off('click');
+		$('.task_counter > a', task_item).click(function(event) {
 			event.preventDefault();
 		});
-		$('.task_counter', form).css('color', '#CECECE');
+		$('.task_counter', task_item).css('color', '#CECECE');
 	} else {
 		elem.removeClass('icon-checked');
 		elem.addClass('icon-unchecked');
-		$('.task_counter > a', form).toggle(startButton, pauseButton);
-		$('.task_counter', form).css('color', 'black');
+		$('.task_counter > a', task_item).toggle(startButton, pauseButton);
+		$('.task_counter', task_item).css('color', 'black');
 	}
 }
 
@@ -253,7 +253,7 @@ function startButton() {
 	$(this).addClass('icon-pause');
 	
 	// post ajax request to store STARTED state of a task
-	var id = $(this).parents('form').children('input[name="id"]').val();
+	var id = $(this).parents('.task_item').find('input[name="id"]').val();
 	var now = new TimeSpan();
 	$.post('index.php?m=ajax&c=task_ajax&a=started',
 			{'id': id, 'started': now.getUnixTime()},
@@ -262,8 +262,8 @@ function startButton() {
 
 function ajaxTaskStartedHandler(xml) {
 	var id = $("id", xml).text();
-	var form = $('.task_item > form').has('input[name="id"][value="' + id + '"]');
-	$('input[name="start"]', form).prev('.editable_data').html($("start", xml).html());
+	var task_item = $('.task_item').has('input[name="id"][value="' + id + '"]');
+	$('input[name="start"]', task_item).prev('.editable_data').html($("start", xml).html());
 }
 
 function pauseButton() {
@@ -301,8 +301,8 @@ function ajaxEditableHandler(xml) {
 	var id = $('id', xml).text();
 	var attr = $('attribute', xml).text();
 	var value = $('value', xml).html();
-	var form = $('.task_item > form').has('input[name="id"][value="' + id + '"]');
-	$('.editable > :input[name="'+attr+'"]', form)
+	var task_item = $('.task_item').has('input[name="id"][value="' + id + '"]');
+	$('.editable > :input[name="'+attr+'"]', task_item)
 		.val(value).hide()
 		.prevAll(".editable_data").html(value).show()
 		.nextAll('.icon-pencil').show();

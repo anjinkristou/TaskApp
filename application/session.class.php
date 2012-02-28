@@ -11,16 +11,27 @@ class Session {
 
 	public static $UserName;
 
+	public static $session_timeout = 3600; // miliseconds
+
 	public static function Start() {
+
 		session_start();
+
+		if(isset($_SESSION['last_activity'])) {
+			if(time() - $_SESSION['last_activity'] > Session::$session_timeout) { // session timeout!
+				Session::destroySession();
+				session_start(); // to update $_SESSION vars
+			}
+			else
+				$_SESSION['last_activity'] = time();
+		}
+
 		Session::initVars();
+
 	}
 
 	public static function isAuthenticated() {
-		if(isset($_SESSION['USER_ID']))
-			return true;
-		else
-			return false;
+		return isset($_SESSION['USER_ID']);
 	}
 
 	public static function authenticateUser($id) {
@@ -43,6 +54,8 @@ class Session {
 			$stmt->execute();
 			$result = $stmt->fetch();
 			Session::$UserName = $result[0];
+			//
+			$_SESSION['last_activity'] = time();
 		}
 		else
 			Session::$UserID = -1;
